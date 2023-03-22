@@ -121,7 +121,7 @@ fn save_to_csv(data: Vec<Data>) -> Result<(), Box<dyn StdError>> {
     }
 
     let csv_data = String::from_utf8(csv_writer.into_inner()?)?;
-    let mut file = File::create(&path)?;
+    let mut file = File::create(path)?;
     file.write_all(csv_data.as_bytes())?;
 
     Ok(())
