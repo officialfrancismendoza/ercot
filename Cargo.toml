@@ -7,3 +7,19 @@ edition = "2021"
 
 [dependencies]
 ferris-says = "0.2"
+
+# Reqwest crate dependencies
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+
+# (OPTIONAL) Scraper crate dependencies 
+scraper = "0.15.0"
+
+# CSV crate
+csv = "1.2"
+
+# Serde crate
+serde = { version = "1.0.152", features = [ "derive" ] } 
+
+# (OPTIONAL) Chrono crate
+chrono = "0.4.24"
