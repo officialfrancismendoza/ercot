@@ -5,6 +5,7 @@ use std::error::Error as StdError;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
+use chrono::{Datelike, Utc};
 
 // Struct containing all the columns to scrape 
 #[derive(Debug, Serialize)]
@@ -17,9 +18,18 @@ struct Data {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn StdError>> {
-    let url = "https://www.ercot.com/content/cdr/html/20230322_dam_spp.html";
-    let html_data = fetch_html(url).await?;
+    // Use chrono library to dynamically update link
+    let current_date = Utc::now().naive_utc().date();
+    let year = current_date.year();
+    let month = current_date.month();
+    let day = current_date.day();
 
+    let url = format!(
+        "https://www.ercot.com/content/cdr/html/{:04}{:02}{:02}_dam_spp.html",
+        year, month, day
+    );
+
+    let html_data = fetch_html(&url).await?;
     let combined_data = extract_data(&html_data)?;
     save_to_csv(combined_data)?;
     println!("Data saved to combined.csv");
