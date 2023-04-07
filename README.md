@@ -1,5 +1,4 @@
-# ercot
-Galaxy Digital take-home Rust assignment
+# ERCOT Data Scraper
 
 ### Summary
 - Currently, the binary takes in a static link of the ERCOT price data, scrapes for specified attributes, and exports them into a combined CSV file
